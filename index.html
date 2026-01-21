@@ -1,7 +1,8 @@
 <h1>Welcome to Thrill Ranker!</h1>
 <h2>This website is dedicated to ranking Amusement Rides based off how scary they are</h2>
  <div class="topnav">
-  <input type="text" placeholder="Search for a ride..">
+  <input type="text" id="ride-search" placeholder="Search for a ride..">
+  <div id="search-results"></div>
 </div> 
 
 
@@ -36,4 +37,41 @@
 
 </div>
 
+<script type="module">
+    import { supabase } from './supabaseClient.js';
+
+    const searchInput = document.getElementById('ride-search');
+    const searchResults = document.getElementById('search-results');
+
+    searchInput.addEventListener('input', async (e) => {
+        const query = e.target.value.trim();
+
+        if (query.length < 2) {
+            searchResults.innerHTML = '';
+            return;
+        }
+
+        const { data: rides, error } = await supabase
+            .from('ride')
+            .select('id, name')
+            .ilike('name', `%${query}%`)
+            .limit(10);
+
+        if (error) {
+            console.error('Error fetching rides:', error);
+            searchResults.innerHTML = '<p>Error searching for rides.</p>';
+            return;
+        }
+
+        if (rides && rides.length > 0) {
+            // Always display results as links, even if there is only one.
+            const rideLinks = rides.map(ride => 
+                `<a href="/Ride_page/ride_page.html?id=${ride.id}">${ride.name}</a>`
+            ).join('<br>');
+            searchResults.innerHTML = rideLinks;
+        } else {
+            searchResults.innerHTML = '<p>No rides found.</p>';
+        }
+    });
+</script>
 

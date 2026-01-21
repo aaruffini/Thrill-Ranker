@@ -66,7 +66,7 @@
         if (rides && rides.length > 0) {
             // Always display results as links, even if there is only one.
             const rideLinks = rides.map(ride => 
-                `<a href="/Ride_page/ride_page.html?id=${ride.id}">${ride.name}</a>`
+                `<a href="Ride_page/ride_page.html?id=${ride.id}">${ride.name}</a>`
             ).join('<br>');
             searchResults.innerHTML = rideLinks;
         } else {

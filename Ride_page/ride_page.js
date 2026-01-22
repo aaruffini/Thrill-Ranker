@@ -1,4 +1,4 @@
-import { supabase } from '../supabaseClient.js';
+import { supabase } from '/supabaseClient.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Get the ride ID from the URL
@@ -10,18 +10,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    // Fetch the ride data from Supabase
+    // Call the custom SQL function 'get_ride_details'
     const { data: ride, error } = await supabase
-        .from('ride')
-        .select(`
-            name,
-            ride_type,
-            min_rider_height,
-            park ( name, city, state ),
-            manufacturer ( name ),
-            rollercoaster ( * )
-        `)
-        .eq('id', rideId)
+        .rpc('get_ride_details', { ride_id_param: rideId })
         .single();
 
     if (error) {
@@ -31,26 +22,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     if (ride) {
-        // Populate the page with the ride data
-        document.getElementById('ride-name').textContent = ride.name || 'N/A';
+        // Populate the page with the data from the function
+        document.getElementById('ride-name').textContent = ride.ride_name || 'N/A';
+        document.getElementById('ride-park').textContent = ride.park_name ? `${ride.park_name} (${ride.city}, ${ride.state})` : 'N/A';
+        document.getElementById('ride-manufacturer').textContent = ride.manufacturer_name || 'N/A';
         
-        // Display Park info from the joined 'park' table
-        document.getElementById('ride-park').textContent = ride.park ? `${ride.park.name} (${ride.park.city}, ${ride.park.state})` : 'N/A';
-        
-        // Display Manufacturer info from the joined 'manufacturer' table
-        document.getElementById('ride-manufacturer').textContent = ride.manufacturer ? ride.manufacturer.name : 'N/A';
-
-        // Display Roller Coaster specific info if it exists
-        if (ride.ride_type === 'Roller Coaster' && ride.rollercoaster) {
-            const rc_details = ride.rollercoaster[0]; // It's an array, get the first element
-            document.getElementById('ride-model').textContent = rc_details.model || 'N/A';
-            document.getElementById('ride-height').textContent = rc_details.height ? `${rc_details.height} ft` : 'N/A';
-            document.getElementById('ride-speed').textContent = rc_details.top_speed ? `${rc_details.top_speed} mph` : 'N/A';
-        } else {
-            document.getElementById('ride-model').textContent = 'N/A';
-            document.getElementById('ride-height').textContent = 'N/A';
-            document.getElementById('ride-speed').textContent = 'N/A';
-        }
+        // The function returns NULL for these fields if the ride is not a rollercoaster
+        document.getElementById('ride-model').textContent = ride.model || 'N/A';
+        document.getElementById('ride-height').textContent = ride.height ? `${ride.height} ft` : 'N/A';
+        document.getElementById('ride-speed').textContent = ride.top_speed ? `${ride.top_speed} mph` : 'N/A';
+        document.getElementById('ride-material').textContent = ride.material || 'N/A';
+        document.getElementById('ride-seating').textContent = ride.seat || 'N/A';
+        document.getElementById('ride-lift-angle').textContent = ride.lift_angle ? `${ride.lift_angle}°` : 'N/A';
+        document.getElementById('ride-drop-angle').textContent = ride.drop_angle ? `${ride.drop_angle}°` : 'N/A';
+        document.getElementById('ride-time').textContent = ride.ride_time ? `${ride.ride_time} seconds` : 'N/A';
+        document.getElementById('ride-inversions').textContent = ride.inversion_count !== null ? ride.inversion_count : 'N/A';
+        document.getElementById('ride-lift-system').textContent = ride.lift_system || 'N/A';
 
     } else {
         document.getElementById('ride-details').innerHTML = '<p>Ride not found.</p>';

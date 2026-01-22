@@ -1,4 +1,4 @@
-import { supabase } from '/supabaseClient.js';
+import { supabase } from '../supabaseClient.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Get the ride ID from the URL

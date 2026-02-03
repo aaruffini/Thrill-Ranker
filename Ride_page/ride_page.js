@@ -10,14 +10,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    let ride, error;
+    let ride;
     // Call the custom SQL function 'get_ride_details'
-    try{
-        const response = await supabase
+    try {
+        const { data, error } = await supabase
             .rpc('get_ride_details', { ride_id_param: rideId })
             .single();
-        ride = response.data;
-        error = response.error;
+
+        if (error) {
+            throw error;
+        }
+        ride = data;
     }
     catch (error) {
         console.error('Error fetching ride details:', error);

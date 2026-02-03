@@ -6,16 +6,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     const rideId = params.get('id');
 
     if (!rideId) {
-        document.getElementById('ride-details').innerHTML = '<p>No ride specified.</p>';
+        document.getElementById('ride-details').innerHTML = '<p>Error trying to query ride id.</p>';
         return;
     }
 
     // Call the custom SQL function 'get_ride_details'
+    try{
     const { data: ride, error } = await supabase
         .rpc('get_ride_details', { ride_id_param: rideId })
         .single();
-
-    if (error) {
+    }
+    catch (error) {
         console.error('Error fetching ride details:', error);
         document.getElementById('ride-details').innerHTML = '<p>Could not fetch ride details. Check console for errors.</p>';
         return;

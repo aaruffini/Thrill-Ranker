@@ -1,10 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <Title>Rankings</Title>
+    <link rel = "stylesheet" href = "ranking.css">
+</head>
 
-<h1>UNDER CONSTRUCTION PLACEHOLDER</h1>
+
+
+<body>
 <h1>How does the ranking system work?</h1>
-<p1>Once fully live, users can select what they think the appropriate ranking should be</p1>
-<p1>This website using a ranking system that is used by Ski resorts and MTB Trails</p1>
+<p>Once fully live, users can select what they think the appropriate ranking should be.</p>
+<p>This website uses a ranking system that is used by Ski resorts and MTB Trails.</p>
 
-<p1>The least thrilling rides are green circle 🟢</p1>
-<p1>The next level of thrill is 🟦</p1>
-<p1>The next level of thrill is ♦️</p1>
-<p1>The most thrilling rides are ♦️♦️</p1>
+
+
+<div class="card-container">
+    <!-- Green Circle Card -->
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front green">
+                <div class="symbol">🟢</div>
+            </div>
+            <div class="flip-card-back green-back">
+                <h1>Green Circle</h1>
+                <p>Least thrilling rides, best for those who may not like rides!</p>
+                <p>Green circle rides are typically kiddie rides or rides that may be slow, no inversions, and have little to no airtime</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blue Square Card -->
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front blue">
+                <div class="symbol">🟦</div>
+            </div>
+            <div class="flip-card-back blue-back">
+                <h1>Blue Square</h1>
+                <p>Moderate rides, These rides offer a bit more of an intense expereince compared to green circle rides</p>
+                <p>These are typicallty rides that have only 1 inversion and dont go very fast, and have some moderate airtime!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Black Diamond Card -->
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front black">
+                <div class="symbol">♦️</div>
+            </div>
+            <div class="flip-card-back black-back">
+                <h1>Black Diamond</h1>
+                <p>Intense rides, These rides offer a step above the blue square rides.</p>
+                <p>These are typically rides with a mutliple inversions, go fast, and experience a lot of airtime! </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Double Black Diamond Card -->
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front double-black">
+                <div class="symbol">♦️♦️</div>
+            </div>
+            <div class="flip-card-back double-black-back">
+                <h1>Double Black Diamond</h1>
+                <p>Most Intense rides,These rides can seem like a big step from black diamonds!</p>
+                <p>These are typically rides with many inversions, go very fast, and can have a ton of airtime, especially ejector airtime</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+h1 {
+    text-align: center;
+}
+
+p{
+    text-align: center;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 20px;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+}
+
+/*Gemini Generated*/
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px; /* Increased gap for more spacing */
+    margin-top: 30px;
+    max-width: 600px; /* 250px card + 40px gap + 250px card = 540px */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*W3 Schools*/
+.flip-card {
+  background-color: transparent;
+  width: 250px;
+  height: 250px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.flip-card-front {
+  color: black;
+}
+
+.flip-card-back {
+  color: white;
+  transform: rotateY(180deg);
+  padding: 15px;
+}
+
+.symbol {
+    font-size: 100px;
+}
+
+/* Card Specific Colors */
+.flip-card-front.green { background-color: #2ecc71; }
+.flip-card-back.green-back { background-color: #27ae60; }
+
+.flip-card-front.blue { background-color: #3498db; }
+.flip-card-back.blue-back { background-color: #2980b9; }
+
+.flip-card-front.black { background-color: #34495e; }
+.flip-card-back.black-back { background-color: #2c3e50; }
+
+.flip-card-front.double-black { background-color: #000000; }
+.flip-card-back.double-black-back { background-color: #222222; }
+
+        
+    
+
+</style>
+
+</body>
+
+
+
+</html>

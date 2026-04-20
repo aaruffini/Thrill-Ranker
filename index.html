@@ -25,10 +25,11 @@
     </header>
 
    
-    <div class="topnav">
+    <!-- <div class="topnav">
         <input type="text" id="ride-search" placeholder="Search for a ride..">
         <div id="search-results"></div>
-    </div>
+    </div> -->
+    
     <div id="map" style="height: 500px;"></div>
 
     
@@ -64,7 +65,7 @@
         async function loadParks() {
             const { data: parks, error } = await supabase
                 .from('parks')
-                .select('id, name, location');
+                .select('id, name, location:location::geometry');
 
             if (error) {
                 console.error('Error loading parks:', error);
@@ -75,7 +76,7 @@
 
             parks.forEach(park => {
                 if (park.location) {
-                    // Assuming location is a GeoJSON point: { type: "Point", coordinates: [lng, lat] }
+                    // Location is now a GeoJSON object: { type: "Point", coordinates: [lng, lat] }
                     // Leaflet expects [lat, lng]
                     const coordinates = park.location.coordinates;
                     L.marker([coordinates[1], coordinates[0]])

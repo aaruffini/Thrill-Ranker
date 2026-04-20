@@ -81,3 +81,11 @@ body {
 .middlenav button:hover {
     background-color: #365899;
 }
+
+#map {
+    height: 1000px;
+    width: 80%;
+    margin: 20px auto;
+    border-radius: 12px;
+    border: 2px solid #444;
+}

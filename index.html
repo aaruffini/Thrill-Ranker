@@ -76,12 +76,12 @@
 
             parks.forEach(park => {
                 if (park.location) {
-                    // Location is now a GeoJSON object: { type: "Point", coordinates: [lng, lat] }
+                    // Location is a GeoJSON object: { type: "Point", coordinates: [lng, lat] }
                     // Leaflet expects [lat, lng]
                     const coordinates = park.location.coordinates;
                     L.marker([coordinates[1], coordinates[0]])
                         .addTo(map)
-                        .bindPopup(`<h3>${park.name}</h3>`);
+                        .bindPopup(`<h3><a href="Park_page/Park_page/park_page.html?id=${park.id}">${park.name}</a></h3>`);
                     
                 }
             });
@@ -89,11 +89,6 @@
 
         // loadRides();
         loadParks();
-        
-
-
-
-
 
     </script>
 

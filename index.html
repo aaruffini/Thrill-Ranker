@@ -16,6 +16,7 @@
     <header class="top-bar">
         <div class="navigation-items">
             <div class="middlenav">
+                <button id= "Search">Search</button>
                 <button id="AboutThisSite">About</button>
                 <button id="RankingSystem">Ranking</button>
                 <button id="Sources">Sources</button>
@@ -25,16 +26,16 @@
     </header>
 
    
-     <div class="topnav">
+    <div><h1>Select a park to Start!</h1></div>
+     
+
+    <div id="map" style="height: 500px;"></div>
+
+    <div class="topnav">
         <input type="text" id="ride-search" placeholder="Search for a ride..">
         <div id="search-results"></div>
     </div>
 
-    <div id="map" style="height: 500px;"></div>
-
-   
-
-    
     
     <script type="module">
         import { supabase } from './supabaseClient.js';
@@ -47,6 +48,7 @@
 
         const searchInput = document.getElementById('ride-search');
         const searchResults = document.getElementById('search-results');
+       
 
         searchInput.addEventListener('input', async (e) => {
             const query = e.target.value.trim();
@@ -121,6 +123,11 @@
         document.getElementById("Contact").onclick = function () {
             window.location.href = "Frontend/contact.html";
         };
+        document.getElementById("Search").onclick = function () {
+                window.location.href = "Search-page/search.html";
+        };
+        
+
     </script>
 
 </body>

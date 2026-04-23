@@ -82,6 +82,7 @@
                     L.marker([coordinates[1], coordinates[0]])
                         .addTo(map)
                         .bindPopup(`<h3>${park.name}</h3>`);
+                    
                 }
             });
         }
@@ -89,25 +90,7 @@
         // loadRides();
         loadParks();
         
-        const searchControl = L.control({ position: 'topright' });
 
-            searchControl.onAdd = function () {
-                const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
-
-                div.innerHTML = `
-        <input id="map-search" type="text" placeholder="Search rides..." 
-        style="
-            padding: 6px;
-            width: 160px;
-            border: none;
-            outline: none;
-        ">
-    `;
-
-                return div;
-            };
-
-            searchControl.addTo(map);
 
 
 

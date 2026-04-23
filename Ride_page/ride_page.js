@@ -28,8 +28,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('ride-park').textContent = ride.park_name || 'N/A';
         document.getElementById('ride-manufacturer').textContent = ride.manufacturer_name || 'N/A';
         document.getElementById('ride-model').textContent = ride.model_name || 'v2';
-       
+        document.getElementById('ride-height').textContent = ride.height || 'NA';
+        document.getElementById('ride-speed').textContent = ride.speed || 'NA';
+        document.getElementById('ride-time').textContent = ride.ride_time || 'NA';
+        document.getElementById('ride-inversions').textContent = ride.inversions || 'NA';
+        document.getElementById('ride-lift-system').textContent = ride.lift_system_name || 'NA';
         
+        if (ride.latitude && ride.longitude) {
+            const map = L.map('map').setView([ride.latitude, ride.longitude], 15);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            L.marker([ride.latitude, ride.longitude]).addTo(map)
+                .bindPopup(ride.ride_name)
+                .openPopup();
+        }
 
     } else {
         document.getElementById('ride-details').innerHTML = '<p>Ride not found.</p>';

@@ -25,12 +25,14 @@
     </header>
 
    
-    <!-- <div class="topnav">
+     <div class="topnav">
         <input type="text" id="ride-search" placeholder="Search for a ride..">
         <div id="search-results"></div>
-    </div> -->
+    </div>
 
     <div id="map" style="height: 500px;"></div>
+
+   
 
     
     
@@ -43,24 +45,38 @@
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        // async function loadRides() {
-        //     const { data: rides, error } = await supabase
-        //         .from('ride')
-        //         .select('id, name, latitude, longitude');
+        const searchInput = document.getElementById('ride-search');
+        const searchResults = document.getElementById('search-results');
 
-        //     if (error) {
-        //         console.error(error);
-        //         return;
-        //     }
+        searchInput.addEventListener('input', async (e) => {
+            const query = e.target.value.trim();
 
-        //     rides.forEach(ride => {
-        //         if (ride.latitude && ride.longitude) {
-        //             L.marker([ride.latitude, ride.longitude])
-        //                 .addTo(map)
-        //                 .bindPopup(`<a href="Ride_page/ride_page.html?id=${ride.id}">${ride.name}</a>`);
-        //         }
-        //     });
-        // }
+            if (query.length < 2) {
+                searchResults.innerHTML = '';
+                return;
+            }
+
+            const {data: rides, error } = await supabase
+                .from('ride')
+                .select('id, name')
+                .ilike('name', `%${query}%`)
+                .limit(10);
+
+            if (error) {
+                console.error('Error fetching rides:', error);
+                searchResults.innerHTML = '<p>Error searching for rides.</p>';
+                return;
+            }
+
+            if (rides && rides.length > 0) {
+                const rideLinks = rides.map(ride =>
+                    `<a href="Ride_page/ride_page.html?id=${ride.id}">${ride.name}</a>`
+                ).join('');
+                searchResults.innerHTML = rideLinks;
+            } else {
+                searchResults.innerHTML = '<p>No rides found.</p>';
+            }
+        });
 
         async function loadParks() {
             const { data: parks, error } = await supabase
@@ -87,7 +103,6 @@
             });
         }
 
-        // loadRides();
         loadParks();
 
     </script>

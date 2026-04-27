@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Sign in — Thrill Ranker</title>
+	<link rel="stylesheet" href="../style.css">
+	<style>
+		.auth-container{max-width:420px;margin:48px auto;padding:24px;background:#fff;border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+		.auth-container input{width:100%;padding:10px;margin:8px 0;border:1px solid #ddd;border-radius:6px}
+		.auth-container button{width:100%;padding:10px;border-radius:6px;background:#2b7cff;color:#fff;border:none}
+		.auth-actions{display:flex;gap:8px}
+	</style>
+</head>
+<body>
+	<div class="auth-container">
+		<h1>Sign in to vote on rides!</h1>
+		<p>Enter your email and we'll send a link for you to sign in.</p>
+		<input id="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+		<div class="auth-actions">
+			<button id="send-magic-link">Send link</button>
+		</div>
+		<p id="message" aria-live="polite"></p>
+		<hr />
+		<p>If you already have a session you can sign out here: <button id="sign-out" style="background:#eee;color:#000;padding:6px 10px;border-radius:6px;border:1px solid #ddd">Sign out</button></p>
+	</div>
+
+	<script type="module">
+		import { supabase } from '../supabaseClient.js';
+
+		const emailInput = document.getElementById('email');
+		const sendBtn = document.getElementById('send-magic-link');
+		const msg = document.getElementById('message');
+		const signOutBtn = document.getElementById('sign-out');
+
+		async function sendMagicLink() {
+			const email = emailInput.value.trim();
+			if (!email) {
+				msg.textContent = 'Please enter a valid email address.';
+				return;
+			}
+
+			sendBtn.disabled = true;
+			msg.textContent = 'Sending magic link…';
+
+			const { error } = await supabase.auth.signInWithOtp({
+				email,
+				options: { emailRedirectTo: window.location.origin + '/index.html' }
+			});
+
+			if (error) {
+				msg.textContent = `Error: ${error.message}`;
+				console.error(error);
+				sendBtn.disabled = false;
+				return;
+			}
+
+			msg.textContent = 'Check your inbox for the magic link.';
+		}
+
+		sendBtn.addEventListener('click', sendMagicLink);
+		emailInput.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter') sendMagicLink();
+		});
+
+		// Sign out
+		signOutBtn.addEventListener('click', async () => {
+			await supabase.auth.signOut();
+			msg.textContent = 'Signed out.';
+		});
+
+		// Redirect if already signed in
+		const { data: { session } } = await supabase.auth.getSession();
+		if (session) {
+			window.location.href = '/index.html';
+		}
+
+	
+		supabase.auth.onAuthStateChange((event, session) => {
+			if (session) window.location.href = '/index.html';
+		});
+	</script>
+</body>
+</html>

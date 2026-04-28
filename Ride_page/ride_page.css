@@ -1,6 +1,7 @@
 body{
-    background-color: lightblue;
+    background-color: rgb(241, 241, 241);
 }
+
 
 h1{
      text-align: center;
@@ -14,4 +15,7 @@ p{
      font-size: 40;
      font-family: 'Trebuchet MS', sans-serif;
      color:rgb(29, 39, 230)
+}
+div1{
+     text-align: center;
 }

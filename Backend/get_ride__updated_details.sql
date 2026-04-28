@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION get_ride_details(ride_id_param INT)
+CREATE OR REPLACE FUNCTION get_ride_details_v3(ride_id_param INT) -- Renamed to v2
 RETURNS TABLE (
     ride_name TEXT,
     park_name TEXT,
@@ -10,7 +10,14 @@ RETURNS TABLE (
     speed INT4,
     ride_time INT4,
     inversions INT2,
-    lift_system_name TEXT
+    lift_system_name TEXT,
+    green_count INT4,
+    blue_count INT4,
+    black_count INT4,
+    double_black_count INT4,
+    long float8,
+    lat float8
+
 )
 LANGUAGE plpgsql
 AS $$
@@ -27,7 +34,13 @@ BEGIN
         rc.speed,
         rc.ride_time,
         rc.inversions,
-        lst.name AS lift_system_name
+        lst.name AS lift_system_name,
+        r.green_count,
+        r.blue_count,
+        r.black_count,
+        r.double_black_count,
+        r.long,
+        r.lat
     FROM
         ride r
     JOIN

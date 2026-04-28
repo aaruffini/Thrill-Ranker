@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('park-name').textContent = park.name || 'N/A';
         document.getElementById('park-city').textContent = park.city || 'N/A';
         document.getElementById('park-state').textContent = park.state || 'N/A';
-        
+        document.getElem
         // Assuming you have an element with id 'park-rides' to display the rides
         const ridesList = document.getElementById('park-rides');
         if (ridesList) {

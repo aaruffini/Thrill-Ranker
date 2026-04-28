@@ -74,6 +74,108 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.warn('Error setting ride image', e);
         }
 
+        // Modal logic
+        const modal = document.getElementById('info-modal');
+        if (modal) {
+            const closeButton = document.querySelector('.close-button');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modelLink = document.getElementById('ride-model-link');
+            const liftSystemLink = document.getElementById('ride-lift-system-link');
+
+            if (modelLink) {
+                modelLink.onclick = async (e) => {
+                    e.preventDefault();
+                    if (ride && ride.model_id) {
+                        const { data, error } = await supabase.rpc('get_ride_model_detail', { model_id_param: ride.model_id }).single();
+                        if (error) {
+                            console.error('Error fetching model details:', error);
+                            modalTitle.textContent = ride.model_name;
+                            modalDescription.textContent = 'Could not fetch model details.';
+                        } else if (data) {
+                            modalTitle.textContent = ride.model_name;
+                            modalDescription.textContent = data.description || 'No description available.';
+                        }
+                        modal.style.display = 'block';
+                    } else {
+                        modalTitle.textContent = 'Error';
+                        modalDescription.textContent = 'Model ID not found.';
+                        modal.style.display = 'block';
+                    }
+                };
+            }
+
+            if (liftSystemLink) {
+                liftSystemLink.onclick = async (e) => {
+                    e.preventDefault();
+                    const { data, error } = await supabase.from('lift_systems').select('description').eq('lift_system_name', ride.lift_system_name).single();
+                    if (data) {
+                        modalTitle.textContent = ride.lift_system_name;
+                        modalDescription.textContent = data.description || 'No description available.';
+                        modal.style.display = 'block';
+                    }
+                };
+            }
+
+            if (closeButton) {
+                closeButton.onclick = () => {
+                    modal.style.display = 'none';
+                };
+            }
+
+            window.onclick = (event) => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            };
+        }
+
+        // Voting logic
+        const voteButtons = {
+            green: document.getElementById('vote-green'),
+            blue: document.getElementById('vote-blue'),
+            black: document.getElementById('vote-black'),
+            doubleBlack: document.getElementById('vote-double-black')
+        };
+        const voteFeedback = document.getElementById('vote-feedback');
+
+        voteButtons.green.addEventListener('click', () => handleVote('green'));
+        voteButtons.blue.addEventListener('click', () => handleVote('blue'));
+        voteButtons.black.addEventListener('click', () => handleVote('black'));
+        voteButtons.doubleBlack.addEventListener('click', () => handleVote('double_black'));
+
+        async function handleVote(voteType) {
+            const { data: { user } } = await supabase.auth.getUser();
+            
+            if (!user) {
+                voteFeedback.textContent = 'You must be logged in to vote. Please sign in or create an account.';
+                voteFeedback.style.display = 'block';
+                // Optionally, redirect to login page after a delay
+                // setTimeout(() => { window.location.href = '/authentication.html'; }, 3000);
+                return;
+            }
+
+            const { data, error } = await supabase.rpc('handle_user_vote', { p_ride_id: rideId, p_vote_type: voteType });
+            
+            if (error) {
+                console.error('Error voting:', error);
+                voteFeedback.textContent = `An error occurred: ${error.message}`;
+                voteFeedback.style.display = 'block';
+            } else if (data) {
+                const updatedCounts = data[0];
+                document.getElementById('green_count').textContent = updatedCounts.green_count;
+                document.getElementById('blue_count').textContent = updatedCounts.blue_count;
+                document.getElementById('black_count').textContent = updatedCounts.black_count;
+                document.getElementById('double_black_count').textContent = updatedCounts.double_black_count;
+
+                voteFeedback.textContent = 'Your vote has been recorded!';
+                voteFeedback.style.display = 'block';
+                setTimeout(() => {
+                    voteFeedback.style.display = 'none';
+                }, 3000);
+            }
+        }
+
     } else {
         document.getElementById('ride-details').innerHTML = '<p>Ride not found.</p>';
     }

@@ -15,7 +15,7 @@
             <div class="ride-meta">
                 <p><strong>Park:</strong> <span id="ride-park"></span></p>
                 <p><strong>Manufacturer:</strong> <span id="ride-manufacturer"></span></p>
-                <p><strong>Model:</strong> <span id="ride-model"></span></p>
+                <p><strong>Model:</strong> <span id="ride-model"></span></a></p>
                 
                
 
@@ -51,7 +51,7 @@
                 </div>
                 <div class="stat-item">
                     <img class="attr-icon" src="../Images/lift.jpg" alt="lift icon"> 
-                    <p><span id="ride-lift-system"></span><br></p>
+                    <p><span id="ride-lift-system"></span></a><br></p>
                 </div>
             </div>
         </div>
@@ -78,6 +78,31 @@
             </div>
         </div>
     </div>
+
+    <div class="voting-container">
+        <h2>Vote!</h2>
+        <div class="ranking-grid">
+            <div class="ranking-item">
+                <img class="attr-icon" src="../Images/green.jpg" alt="green circle">
+                <p><span id="green_count_display"></span> <button id="vote-green">Vote Green</button><br></p>
+            </div>
+            <div class="ranking-item">
+                <img class="attr-icon" src="../Images/blue.jpg" alt="blue square">
+                <p><span id="blue_count_display"></span> <button id="vote-blue">Vote Blue</button><br></p>
+            </div>
+            <div class="ranking-item">
+                <img class="attr-icon" src="../Images/black.jpg" alt="black diamond">
+                <p><span id="black_count_display"></span> <button id="vote-black">Vote Black</button><br></p>
+            </div>
+            <div class="ranking-item">
+                <img class="attr-icon" src="../Images/double.jpg" alt="double black diamond">
+                <p><span id="double_black_count_display"></span> <button id="vote-double-black">Vote Double Black</button><br></p>
+            </div>
+        </div>
+        <div id="vote-feedback" class="vote-feedback"></div>
+    </div>
+    </div>
+
 
 
     <!-- Leaflet is loaded above; ride_page.js will initialize the map when coordinates are available -->

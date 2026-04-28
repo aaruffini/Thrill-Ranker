@@ -14,12 +14,17 @@
 </head>
 <body>
 	<div class="auth-container">
-		<h1>Sign in to vote on rides!</h1>
-		<p>Enter your email and we'll send a link for you to sign in.</p>
+		<h1 id="auth-title">Sign In</h1>
+		<p id="auth-subtitle">Enter your email and password to sign in.</p>
+		
 		<input id="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+		<input id="password" type="password" placeholder="••••••••" autocomplete="current-password" required />
+
 		<div class="auth-actions">
-			<button id="send-magic-link">Send link</button>
+			<button id="sign-in-btn">Sign In</button>
+			<button id="sign-up-btn" style="background:#6e6e6e;">Sign Up</button>
 		</div>
+	
 		<p id="message" aria-live="polite"></p>
 		<hr />
 		<p>If you already have a session you can sign out here: <button id="sign-out" style="background:#eee;color:#000;padding:6px 10px;border-radius:6px;border:1px solid #ddd">Sign out</button></p>
@@ -29,56 +34,151 @@
 		import { supabase } from '../supabaseClient.js';
 
 		const emailInput = document.getElementById('email');
-		const sendBtn = document.getElementById('send-magic-link');
-		const msg = document.getElementById('message');
+		const passwordInput = document.getElementById('password');
+		const signInBtn = document.getElementById('sign-in-btn');
+		const signUpBtn = document.getElementById('sign-up-btn');
 		const signOutBtn = document.getElementById('sign-out');
+		const msg = document.getElementById('message');
+		const SIGNUP_COOLDOWN_SECONDS = 60;
+		const SIGNUP_COOLDOWN_KEY = 'thrill_ranker_signup_cooldown_until';
+		
+        const authTitle = document.getElementById('auth-title');
+        const authSubtitle = document.getElementById('auth-subtitle');
 
-		async function sendMagicLink() {
+		// --- Check for existing session and redirect ---
+		(async () => {
+			const { data: { session } } = await supabase.auth.getSession();
+			if (session) {
+				window.location.href = '/index.html';
+			}
+		})();
+
+		// --- Listen for auth state changes and redirect ---
+		supabase.auth.onAuthStateChange((event, session) => {
+			if (event === 'SIGNED_IN') {
+				window.location.href = '/index.html';
+			}
+		});
+
+		// --- Event Listeners ---
+		signInBtn.addEventListener('click', signInWithPassword);
+		signUpBtn.addEventListener('click', signUpNewUser);
+		signOutBtn.addEventListener('click', signOutUser);
+		initializeSignupCooldown();
+		
+
+		// --- Functions ---
+		async function signInWithPassword() {
 			const email = emailInput.value.trim();
-			if (!email) {
-				msg.textContent = 'Please enter a valid email address.';
+			const password = passwordInput.value.trim();
+			if (!email || !password) {
+				msg.textContent = 'Please enter both email and password.';
 				return;
 			}
 
-			sendBtn.disabled = true;
-			msg.textContent = 'Sending magic link…';
-
-			const { error } = await supabase.auth.signInWithOtp({
-				email,
-				options: { emailRedirectTo: window.location.origin + '/index.html' }
-			});
+			setLoadingState(true, 'Signing in...');
+			const { error } = await supabase.auth.signInWithPassword({ email, password });
 
 			if (error) {
 				msg.textContent = `Error: ${error.message}`;
-				console.error(error);
-				sendBtn.disabled = false;
+				setLoadingState(false);
+			} else {
+				// onAuthStateChange will handle the redirect
+			}
+		}
+
+		async function signUpNewUser() {
+			const remaining = getSignupCooldownRemainingSeconds();
+			if (remaining > 0) {
+				msg.textContent = `Please wait ${remaining}s before trying sign up again.`;
 				return;
 			}
 
-			msg.textContent = 'Check your inbox for the magic link.';
+			const email = emailInput.value.trim();
+			const password = passwordInput.value.trim();
+			if (!email || !password) {
+				msg.textContent = 'Please enter both email and password to sign up.';
+				return;
+			}
+			if (password.length < 6) {
+				msg.textContent = 'Password must be at least 6 characters long.';
+				return;
+			}
+
+			setLoadingState(true, 'Signing up...');
+			const { error } = await supabase.auth.signUp({
+				email,
+				password,
+				options: {
+					emailRedirectTo: window.location.origin + '/index.html'
+				}
+			});
+
+			if (error) {
+				if (isEmailRateLimitError(error)) {
+					startSignupCooldown(SIGNUP_COOLDOWN_SECONDS);
+					msg.textContent = 'Email rate limit reached. Please wait about 60 seconds and try again.';
+				} else {
+					msg.textContent = `Error: ${error.message}`;
+				}
+			} else {
+				startSignupCooldown(SIGNUP_COOLDOWN_SECONDS);
+				msg.textContent = 'Success! Please check your email to verify your account.';
+			}
+			setLoadingState(false);
 		}
 
-		sendBtn.addEventListener('click', sendMagicLink);
-		emailInput.addEventListener('keydown', (e) => {
-			if (e.key === 'Enter') sendMagicLink();
-		});
-
-		// Sign out
-		signOutBtn.addEventListener('click', async () => {
+		async function signOutUser() {
+			setLoadingState(true, 'Signing out...');
 			await supabase.auth.signOut();
-			msg.textContent = 'Signed out.';
-		});
-
-		// Redirect if already signed in
-		const { data: { session } } = await supabase.auth.getSession();
-		if (session) {
-			window.location.href = '/index.html';
+			msg.textContent = 'You have been signed out.';
+			setLoadingState(false);
 		}
 
-	
-		supabase.auth.onAuthStateChange((event, session) => {
-			if (session) window.location.href = '/index.html';
-		});
+		function setLoadingState(loading, message = '') {
+			signInBtn.disabled = loading;
+			signUpBtn.disabled = loading || getSignupCooldownRemainingSeconds() > 0;
+			if (message) {
+				msg.textContent = message;
+			}
+		}
+
+		function isEmailRateLimitError(error) {
+			const message = (error?.message || '').toLowerCase();
+			return message.includes('rate limit') || message.includes('too many requests');
+		}
+
+		function getSignupCooldownRemainingSeconds() {
+			const until = Number(localStorage.getItem(SIGNUP_COOLDOWN_KEY) || 0);
+			const remainingMs = until - Date.now();
+			return remainingMs > 0 ? Math.ceil(remainingMs / 1000) : 0;
+		}
+
+		function startSignupCooldown(seconds) {
+			const until = Date.now() + (seconds * 1000);
+			localStorage.setItem(SIGNUP_COOLDOWN_KEY, String(until));
+			signUpBtn.disabled = true;
+			updateCooldownMessage();
+		}
+
+		function initializeSignupCooldown() {
+			if (getSignupCooldownRemainingSeconds() > 0) {
+				signUpBtn.disabled = true;
+				updateCooldownMessage();
+			}
+		}
+
+		function updateCooldownMessage() {
+			const remaining = getSignupCooldownRemainingSeconds();
+			if (remaining <= 0) {
+				signUpBtn.disabled = false;
+				localStorage.removeItem(SIGNUP_COOLDOWN_KEY);
+				return;
+			}
+
+			msg.textContent = `Please wait ${remaining}s before requesting another signup email.`;
+			setTimeout(updateCooldownMessage, 1000);
+		}
 	</script>
 </body>
 </html>

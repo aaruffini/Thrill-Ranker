@@ -21,7 +21,8 @@
                 <button id="RankingSystem">Ranking</button>
                 <button id="Sources">Sources</button>
                 <button id="Contact">Contact</button>
-                <button id="Auth">Login</button>
+                <button id="Auth">Login / Sign up!</button>
+                <button id="sign-out-btn" style="display: none; background-color: #ff4d4d;">Sign Out</button>
             </div>
         </div>
     </header>
@@ -108,6 +109,43 @@
 
         loadParks();
 
+        // --- Navigation and Auth Logic ---
+
+        // Page navigation buttons
+        document.getElementById("AboutThisSite").onclick = () => window.location.href = "Frontend/about.html";
+        document.getElementById("RankingSystem").onclick = () => window.location.href = "Frontend/ranking.html";
+        document.getElementById("Sources").onclick = () => window.location.href = "Frontend/sources.html";
+        document.getElementById("Contact").onclick = () => window.location.href = "Frontend/contact.html";
+        document.getElementById("Search").onclick = () => window.location.href = "Search-page/search.html";
+        
+        // Auth buttons
+        const authButton = document.getElementById('Auth');
+        
+
+        authButton.onclick = () => window.location.href = "Frontend/authentication.html";
+
+        signOutButton.addEventListener('click', async () => {
+            await supabase.auth.signOut();
+        });
+
+        // Show/hide auth buttons based on session
+        supabase.auth.onAuthStateChange((event, session) => {
+            if (session) {
+                // User is logged in
+                authButton.style.display = 'none';
+                signOutButton.style.display = 'inline-block';
+            } else {
+                // User is logged out
+                authButton.style.display = 'inline-block';
+                signOutButton.style.display = 'none';
+            }
+        });
+
+    </script>
+
+</body>
+</html>
+
     </script>
 
 
@@ -129,10 +167,40 @@
         };
         document.getElementById("Auth").onclick = function () {
             window.location.href = "Frontend/authentication.html";
+
         };
         
 
+        const authButton = document.getElementById('Auth');
+            const signOutButton = document.getElementById('sign-out-btn');
+
+            supabase.auth.onAuthStateChange((event, session) => {
+                if (session) {
+                    // User is logged in
+                    authButton.style.display = 'none';
+                    signOutButton.style.display = 'inline-block';
+                } else {
+                    // User is logged out
+                    authButton.style.display = 'inline-block';
+                    signOutButton.style.display = 'none';
+                }
+            });
+
+            signOutButton.addEventListener('click', async () => {
+                await supabase.auth.signOut();
+                // The onAuthStateChange listener will handle hiding the button
+            });
+
+            document.getElementById('Auth').addEventListener('click', () => {
+                window.location.href = 'Frontend/authentication.html';
+            });
+
+
+        
+
     </script>
+
+        
 
 </body>
 </html>

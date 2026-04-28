@@ -9,38 +9,78 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
-    <div id="ride-details">
+    <div class="container">
         <h1 id="ride-name"></h1>
+        <div class="main-info">
+            <div class="ride-meta">
+                <p><strong>Park:</strong> <span id="ride-park"></span></p>
+                <p><strong>Manufacturer:</strong> <span id="ride-manufacturer"></span></p>
+                <p><strong>Model:</strong> <span id="ride-model"></span></p>
+                
+               
 
-        <!-- Ride info  -->
-        <p><strong>Park:</strong> <span id="ride-park"></span></p>
-        <p><strong>Manufacturer:</strong> <span id="ride-manufacturer"></span></p>
-        <p><strong>Model:</strong> <span id="ride-model"></span></p>
-        <p><strong>Height:</strong> <span id="ride-height"></span></p>
-        <p><strong>Speed:</strong> <span id="ride-speed"></span></p>
-        <p><strong>Ride Time:</strong> <span id="ride-time"></span></p>
-        <p><strong>Inversions:</strong> <span id="ride-inversions"></span></p>
-        <p><strong>Lift System:</strong> <span id="ride-lift-system"></span></p>
+            </div>
+            <div class="map-container">
+                <div id="map" class="ride-map"></div>
+                <div class="gis-info">
+                    <p><strong>Longitude: </strong><span id="longitude"></span></p>
+                    <p><strong>Latitude: </strong><span id="latitude"></span></p>
+                </div>
+            </div>
+           
+        </div>
 
-        <!-- Ranking info  -->
-        <p><strong>Green Circle Votes: </strong> <span id="green_count"></span> </p>
-        <p><strong>Blue Square Votes: </strong> <span id="blue_count"></span></p>
-        <p><strong>Black Diamond Votes: </strong> <span id="black_count"></span> </p>
-        <p><strong>Double Black Diamond Votes: </strong><span id="double_black_count"></span></p>
+        <div class="ride-stats-container">
+            <h2>Ride Stats</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <img class="attr-icon" src="../Images/height.jpg" alt="height icon"> 
+                    <p><span id="ride-height"></span><br>FT</p>
+                </div>
+                <div class="stat-item">
+                    <img class="attr-icon" src="../Images/speed.jpg" alt="speed icon"> 
+                    <p><span id="ride-speed"></span><br>MPH</p>
+                </div>
+                <div class="stat-item">
+                    <img class="attr-icon" src="../Images/time.jpg" alt="time icon"> 
+                    <p><span id="ride-time"></span><br>SEC</p>
+                </div>
+                <div class="stat-item">
+                    <img class="attr-icon" src="../Images/inversions.jpg" alt="inversions icon"> 
+                    <p><span id="ride-inversions"></span><br></p>
+                </div>
+                <div class="stat-item">
+                    <img class="attr-icon" src="../Images/lift.jpg" alt="lift icon"> 
+                    <p><span id="ride-lift-system"></span><br></p>
+                </div>
+            </div>
+        </div>
 
-        <!-- GIS info  -->
-        <p><strong>Longitude:</strong><span id="longitude"></span></p>
-        <p><strong>Latitude:</strong><span id="latitude"></span></p>
-
-        <div1 id="map" style="height: 500px; width: 500px;"></div1>
-    
+        <div class="ranking-container">
+            <h2>Rankings</h2>
+            <div class="ranking-grid">
+                <div class="ranking-item">
+                    <img class="attr-icon" src="../Images/green.jpg" alt="green circle">  
+                    <p><span id="green_count"></span><br>Least thrilling</p>
+                </div>
+                <div class="ranking-item">
+                    <img class="attr-icon" src="../Images/blue.jpg" alt="blue square"> 
+                    <p><span id="blue_count"></span><br>Medium Thrill</p>
+                </div>
+                <div class="ranking-item">
+                    <img class="attr-icon" src="../Images/black.jpg" alt="black diamond">
+                    <p><span id="black_count"></span><br>High Thrill</p>
+                </div>
+                <div class="ranking-item">
+                    <img class="attr-icon" src="../Images/double.jpg" alt="double black diamond"> 
+                    <p><span id="double_black_count"></span><br>Most Thrilling</p>
+                </div>
+            </div>
+        </div>
     </div>
 
 
     <!-- Leaflet is loaded above; ride_page.js will initialize the map when coordinates are available -->
-
-
-
 
     <script type="module" src="ride_page.js"></script>
 </body>

@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('ride-height').textContent = ride.height || 'NA';
         document.getElementById('ride-speed').textContent = ride.speed || 'NA';
         document.getElementById('ride-time').textContent = ride.ride_time || 'NA';
-        document.getElementById('ride-inversions').textContent = ride.inversions || 'NA';
+        document.getElementById('ride-inversions').textContent = ride.inversions || '0';
         document.getElementById('ride-lift-system').textContent = ride.lift_system_name || 'NA';
         // voting info
         document.getElementById('green_count').textContent = ride.green_count ?? '0';
@@ -56,6 +56,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             L.marker([ride.long, ride.lat]).addTo(map)
                 .bindPopup(ride.ride_name)
                 .openPopup();
+        }
+        // Set ride image: prefer an Images file named after the ride (spaces -> _), fallback to temp.jpg
+        try {
+            const rideImageEl = document.getElementById('ride-image');
+            if (rideImageEl) {
+                const cleanName = (ride.ride_name || '').replace(/\s+/g, '_');
+                const candidate = `../Images/${cleanName}.jpg`;
+                // quick existence check by creating Image object
+                const img = new Image();
+                img.onload = () => { rideImageEl.src = candidate; };
+                img.onerror = () => { rideImageEl.src = '../Images/temp.jpg'; };
+                img.src = candidate;
+                rideImageEl.alt = `Image of ${ride.ride_name || 'ride'}`;
+            }
+        } catch (e) {
+            console.warn('Error setting ride image', e);
         }
 
     } else {

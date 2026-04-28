@@ -1,21 +1,113 @@
-body{
-    background-color: rgb(241, 241, 241);
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f7fffa;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #c0392b;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+.main-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.ride-meta {
+    flex: 1;
+}
+
+.ride-meta p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.map-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ride-map {
+    width: 100%;
+    min-width: 300px;
+    height: 300px;
+    border-radius: 8px;
+    border: 1px solid #fffdfd;
+}
+
+.gis-info {
+    text-align: center;
+    margin-top: 10px;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 
-h1{
-     text-align: center;
-     font-size: 40;
-     font-family: 'Trebuchet MS', sans-serif;
-     color:brown
+.ride-stats-container, .ranking-container {
+    margin-top: 20px;
 }
 
-p{
-     text-align: center; 
-     font-size: 40;
-     font-family: 'Trebuchet MS', sans-serif;
-     color:rgb(29, 39, 230)
+.stats-grid, .ranking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    text-align: center;
 }
-div1{
-     text-align: center;
+
+.stat-item, .ranking-item {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.stat-item p, .ranking-item p {
+    margin: 0;
+    font-size: 1em;
+    color: #555;
+}
+
+.attr-icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+.gis-info p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+p strong {
+    color: #34495e;
 }

@@ -117,7 +117,7 @@
 			if (error) {
 				if (isEmailRateLimitError(error)) {
 					startSignupCooldown(SIGNUP_COOLDOWN_SECONDS);
-					msg.textContent = 'Email rate limit reached. Please wait about 60 seconds and try again.';
+					msg.textContent = 'Supabase email throttle hit. This is server-side (not VS Code Live Server). Wait a few minutes, then try again, or use Sign In if this account already exists.';
 				} else {
 					msg.textContent = `Error: ${error.message}`;
 				}

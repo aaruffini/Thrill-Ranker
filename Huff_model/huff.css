@@ -1,0 +1,21 @@
+#map { 
+    height: 400px; 
+    width: 100%;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#results {
+    padding: 1em;
+}
+
+#park-list li {
+    list-style-type: none;
+    margin-bottom: 0.5em;
+}

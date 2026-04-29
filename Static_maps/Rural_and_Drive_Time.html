@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rural and Drive Time Map</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7fffa;
+            color: #222;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        h1 {
+            margin: 0 0 20px;
+            font-size: 24px;
+        }
+        .map {
+            margin-bottom: 28px;
+            background: #fff;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .map h2 {
+            margin: 0 0 12px;
+            font-size: 18px;
+        }
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rural and Drive Time Map</h1>
+
+        <div class="map">
+            <img src="Rural_and_Time.jpg" alt="Rural map" />
+        </div>
+
+        <div class="map">
+            <h2>How it was made:</h2>
+            <p1>
+                First I imported the the updated park csv file into ArcGisPro.<br>
+            
+                <br>I then used the ‘create points from table’ function and selected XY table to point.<br>
+
+            <br> I then imported USA Major cities from ESRI. <br>
+        
+                <br>After importing use the Select by Attribute function to create a new query.<br>
+
+                <br>Apply and then left click on the layer and go to selection and then select ‘make layer from selection’<br>
+
+            <br> Next I had to edit the parks table and I could not use the select by attribute feature for some odd bug so I manually
+                deleted everything and cleaned it to a new table called North East Parks<br>
+                
+                <br>I then when to Generate Drive Time Trade Areas and created Rural drive times of 10 15 and 30 minutes<br>
+
+                <br>For this example I wanted to zone in on NY, PA. MA, NJ, and MA. So I made a second selection on the Parks points and
+                then ran two different time Trades.<br>
+                <br>1. For Rural driving in Miles<br>
+                <br>2. For Drive time.<br><br>
+                
+                I then changed the symbology and added state boundaries and changed their symoblogy to make state’s boundaries stand out<br>
+                from one another.
+
+
+            </p1>
+        </div>
+    </div>
+</body>
+</html>

@@ -3,7 +3,7 @@ from geopy.geocoders import Nominatim
 import csv
 import re
 import time
-
+# mostly vibecoded 
 CITY_ANCHORS = {
     "Sandusky": (41.4489, -82.7080),
     "Santa Clarita": (34.4200, -118.5600),

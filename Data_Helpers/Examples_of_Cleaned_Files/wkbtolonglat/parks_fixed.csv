@@ -1,0 +1,85 @@
+id,name,city,state,longitude,latitude
+1,Magic Kingdom Park,Bay Lake,FL,-81.5818,28.4188
+2,Disney's Animal Kingdom Theme Park,Bay Lake,FL,-81.5906,28.3574
+3,Disney's Hollywood Studios,Bay Lake,FL,-81.5591,28.3581
+4,Epcot,Bay Lake,FL,-81.5494,28.3765
+5,Universal Studios Florida,Orlando,FL,-81.4685,28.4794
+6,Universal Islands of Adventure,Orlando,FL,-81.4702,28.4717
+7,Universal Epic Universe,Orlando,FL,-81.4479,28.4408
+8,Busch Gardens Tampa Bay,Tampa,FL,-82.4195,28.0371
+9,SeaWorld Orlando,Orlando,FL,-81.4612,28.411
+10,LEGOLAND Florida Resort,Winter Haven,FL,-81.6914,27.9899
+11,Fun Spot America (Orlando),Orlando,FL,-81.46,28.47
+12,ICON Park,Orlando,FL,-81.4693,28.4432
+13,Fun Spot America Theme Parks (Kissimee),Kissimmee,FL,-81.5135,28.3245
+14,Universal Volcano Bay,Orlando,FL,-81.4704,28.4735
+15,Disney's Blizzard Beach Water Park,Bay Lake,FL,-81.574392,28.352664
+16,Disney's Typhoon Lagoon Water Park,Lake Buena Vista,FL,-81.5278,28.365
+17,Universal Studios Hollywood,Universal City,CA,-118.35347,34.138088
+18,Disneyland Park,Anaheim,CA,-117.918976,33.812511
+19,Disney California Adventure Park,Anaheim,CA,-117.919935,33.806503
+20,California's Great America,Santa Clara,CA,-121.9759,37.3998
+21,Six Flags Discovery Kingdom,Vallejo,CA,-122.2333,38.1408
+22,Knott's Berry Farm,Buena Park,CA,-117.9991,33.8443
+23,LEGOLAND California,Carlsbad,CA,-117.3113,33.1263
+24,Six Flags Magic Mountain,Valencia,CA,-118.5976,34.4243
+25,Belmont Park,San Diego,CA,-117.2515,32.776
+26,Santa Cruz Beach Boardwalk,Santa Cruz,CA,-122.0198,36.9631
+27,Adventure City,Anaheim,CA,-117.9925,33.8153
+28,SeaWorld San Diego,San Diego,CA,-117.2263,32.7641
+29,Hurricane Harbor Concord,Concord,CA,-122.0514,37.9738
+30,Hurrican Habor Phoneix,Glendale,AZ,-112.1503,33.6959
+31,Castles N' Coasters,Phoenix,AZ,-112.1188,33.5723
+32,Enchanted Island Amusement Park,Phoenix,AZ,-112.09,33.4722
+33,Frontier City,Oklahoma City,OK,-97.441,35.5848
+34,Hurricane Harbor Oklahoma City,Oklahoma City,OK,-97.5885,35.4614
+35,Six Flags Over Texas,Arlington,TX,-97.0702,32.7557
+36,Six Flags Fiesta Texas,San Antonio,TX,-98.6094,29.5995
+37,SeaWorld San Antonio,San Antonio,TX,-98.7,29.4589
+38,Hurrican Harbor Splashtown,Spring,TX,-95.4319,30.0702
+39,Six Flags Great America,Lake County,IL,-87.9344,42.3675
+40,Cedar Point,Sandusky,OH,-82.6835,41.4822
+41,Kings Island,Mason,OH,-84.2694,39.3444
+42,Kings Dominion,Doswell,VA,-77.4431,37.8392
+43,Six Flags Over Georgia,Marietta,GA,-84.5501,33.7712
+44,Carowinds,Charlotte,NC/SC,-80.9404,35.1044
+45,Great Escape,Queensbury,NY,-73.6896,43.3512
+46,Six Flags Darien Lake,Corfu,NY,-78.3847,42.9284
+47,Dorney Park,Allentown,PA,-75.5342,40.5781
+48,Hershey Park,Hershey,PA,-76.6548,40.2888
+49,Six Flags New England,Agawam,MA,-72.6105,42.0384
+50,Six Flags Great Adventure,Jackson,NJ,-74.4402,40.1384
+51,Busch Gardens Williamsburg,Williamsburg,VA,-76.6457,37.2339
+52,Canobie Lake Park,Salem,NH,-71.2464,42.7937
+53,Dollywood,Pigeon Forge,TN,-83.5312,35.7951
+54,Silver Dollar City,Branson,MO,-93.3387,36.6676
+55,Lagoon Amusement Park,Farmington,UT,-111.8943,40.9859
+56,Holiday World & Splashin' Safari,Santa Claus,IN,-86.9133,38.1205
+57,Knoebels Amusement Resort,Elysburg,PA,-76.505,40.8784
+58,Kennywood,West Mifflin,PA,-79.8631,40.3858
+59,Seabreeze Amusement Park,Irondequoit,NY,-77.5419,43.2322
+60,Santa's Village,Jefferson,NH,-71.5034,44.4023
+61,Story Land,Glen,NH,-71.1856,44.1438
+62,Six Flags St. Louis (Recently sold),Eureka,MO,-90.675,38.5133
+63,Worlds of Fun,Kansas City,MO,-94.4891,39.1764
+64,Valleyfair,Shakopee,MN,-93.4548,44.7989
+65,Michigan's Adventure,Muskegon,MI,-86.2736,43.3441
+66,Kentucky Kingdom & Hurricane Bay,Louisville,KY,-85.7483,38.1969
+67,Lake Compounce,Bristol,CT,-72.9242,41.6425
+68,Silverwood,Kootenai County,ID,-116.7111,47.9048
+69,Adventureland Park,Altoona,IA,-93.5114,41.6508
+70,Nickelodeon Universe Theme Park,East Rutherford,NJ,-74.043,40.782
+71,Lost Island Themepark,Waterloo,IA,-92.3247,42.4578
+72,Nickelodeon Universe,Bloomington,MN,-93.2422,44.8548
+73,Mattel Adventure Park,Glendale,AZ,-112.2618,33.5298
+74,Elitch Gardens,Denver,CO,-105.0101,39.7502
+75,Fun Spot America Theme Parks — Atlanta,Fayetteville,GA,-84.4556,33.4739
+76,Quassy Amusement & Waterpark,Middlebury,CT,-73.1678,41.5307
+77,Morey's Piers & Beachfront Water Parks,Wildwood,NJ,-74.808,38.9892
+78,Mt. Olympus - Water & Theme Park Resort,Wisconsin Dells,WI,-89.7917,43.6219
+79,Glenwood Caverns Adventure Park,Glenwood Springs,CO,-107.3233,39.5601
+80,Kemah Boardwalk,Kemah,TX,-95.0204,29.5476
+81,Dutch Wonderland® Family Amusement Park,Lancaster,PA,-76.2239,40.0353
+82,Sesame Place Philadelphia,Langhorne,PA,-74.8719,40.1812
+83,Funtown Splashtown USA,Saco,ME,-70.42764,43.52725
+84,Palace Playland,Old Orchard Beach,ME,-70.3753272,43.5136956

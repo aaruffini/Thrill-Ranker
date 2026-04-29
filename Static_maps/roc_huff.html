@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css" />
+
+    <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            background-color: #f7fffa;
+            font-family: sans-serif;
+        }
+        .map-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2em;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 1em;
+            font-family: 'Gill Sans', sans-serif;
+        }
+       
+        #map_a8dea14ac0061b1e3955fd14307572b6 {
+            position: relative;
+            width: 80%;
+            height: 600px;
+            margin: 0;
+        }
+
+        .leaflet-container {
+            font-size: 1rem;
+        }
+    </style>
+
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <style>
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+    </style>
+
+    <script>
+        L_NO_TOUCH = false;
+        L_DISABLE_3D = false;
+    </script>
+
+
+</head>
+
+<body>
+
+    <div class="map-container">
+        <h1>Rochester Theme Park Huff Map</h1>
+        <div class="folium-map" id="map_a8dea14ac0061b1e3955fd14307572b6"></div>
+    </div>
+
+</body>
+<script>
+
+
+    var map_a8dea14ac0061b1e3955fd14307572b6 = L.map(
+        "map_a8dea14ac0061b1e3955fd14307572b6",
+        {
+            center: [43.15, -77.61],
+            crs: L.CRS.EPSG3857,
+            ...{
+                "zoom": 12,
+                "zoomControl": true,
+                "preferCanvas": false,
+            }
+
+        }
+    );
+
+
+
+
+
+    var tile_layer_d6078d9fcee61567cefcaf60b6704743 = L.tileLayer(
+        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+            "minZoom": 0,
+            "maxZoom": 19,
+            "maxNativeZoom": 19,
+            "noWrap": false,
+            "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+            "subdomains": "abc",
+            "detectRetina": false,
+            "tms": false,
+            "opacity": 1,
+        }
+
+    );
+
+
+    tile_layer_d6078d9fcee61567cefcaf60b6704743.addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var marker_bc9670919baa703b6f22172c35c5dddf = L.marker(
+        [43.15, -77.61],
+        {
+        }
+    ).addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var popup_c0de789dc69b42ba81812549f3c358d6 = L.popup({
+        "maxWidth": "100%",
+    });
+
+
+
+    var html_c32c74af42ecae53b3328caaef2d2245 = $(`<div id="html_c32c74af42ecae53b3328caaef2d2245" style="width: 100.0%; height: 100.0%;">Rochester</div>`)[0];
+    popup_c0de789dc69b42ba81812549f3c358d6.setContent(html_c32c74af42ecae53b3328caaef2d2245);
+
+
+
+    marker_bc9670919baa703b6f22172c35c5dddf.bindPopup(popup_c0de789dc69b42ba81812549f3c358d6)
+        ;
+
+
+
+
+    marker_bc9670919baa703b6f22172c35c5dddf.bindTooltip(
+        `<div>
+                     roc
+                 </div>`,
+        {
+            "sticky": true,
+        }
+    );
+
+
+    var circle_marker_ed161afc8727da7651e49f7312c92187 = L.circleMarker(
+        [41.4822, -82.6835],
+        { "bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.463963735167149, "stroke": true, "weight": 3 }
+    ).addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var popup_b56fd4edcb7a140e40bd6f9be210a57d = L.popup({
+        "maxWidth": 300,
+    });
+
+
+
+    var html_1aecbbad19e2edf85e7b8b8895c96624 = $(`<div id="html_1aecbbad19e2edf85e7b8b8895c96624" style="width: 100.0%; height: 100.0%;">     <b>Cedar Point</b><br>     Sandusky, OH<br>     Coasters: 18<br>     Distance: 283.6 mi<br>     Huff Prob: 0.0023     </div>`)[0];
+    popup_b56fd4edcb7a140e40bd6f9be210a57d.setContent(html_1aecbbad19e2edf85e7b8b8895c96624);
+
+
+
+    circle_marker_ed161afc8727da7651e49f7312c92187.bindPopup(popup_b56fd4edcb7a140e40bd6f9be210a57d)
+        ;
+
+
+
+
+    circle_marker_ed161afc8727da7651e49f7312c92187.bindTooltip(
+        `<div>
+                     Cedar Point (0.002)
+                 </div>`,
+        {
+            "sticky": true,
+        }
+    );
+
+
+    var circle_marker_5a1a89f5024838c6873c9bd66440af17 = L.circleMarker(
+        [39.3444, -84.2694],
+        { "bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.164871881485032, "stroke": true, "weight": 3 }
+    ).addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var popup_eb3278b3dfc0a0b021ed555428c00509 = L.popup({
+        "maxWidth": 300,
+    });
+
+
+
+    var html_5a3009587f2995135b0bf69b91eb73ad = $(`<div id="html_5a3009587f2995135b0bf69b91eb73ad" style="width: 100.0%; height: 100.0%;">     <b>Kings Island</b><br>     Mason, OH<br>     Coasters: 15<br>     Distance: 434.3 mi<br>     Huff Prob: 0.0008     </div>`)[0];
+    popup_eb3278b3dfc0a0b021ed555428c00509.setContent(html_5a3009587f2995135b0bf69b91eb73ad);
+
+
+
+    circle_marker_5a1a89f5024838c6873c9bd66440af17.bindPopup(popup_eb3278b3dfc0a0b021ed555428c00509)
+        ;
+
+
+
+
+    circle_marker_5a1a89f5024838c6873c9bd66440af17.bindTooltip(
+        `<div>
+                     Kings Island (0.001)
+                 </div>`,
+        {
+            "sticky": true,
+        }
+    );
+
+
+    var circle_marker_66f496eb0b161832ef932278e61e0318 = L.circleMarker(
+        [43.3512, -73.6896],
+        { "bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.318043567689896, "stroke": true, "weight": 3 }
+    ).addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var popup_eb23bc10ae90cae9591d742c9ef5ef30 = L.popup({
+        "maxWidth": 300,
+    });
+
+
+
+    var html_21938d53ddcb41da0c5decc19f9eac57 = $(`<div id="html_21938d53ddcb41da0c5decc19f9eac57" style="width: 100.0%; height: 100.0%;">     <b>Great Escape</b><br>     Queensbury, NY<br>     Coasters: 6<br>     Distance: 197.8 mi<br>     Huff Prob: 0.0016     </div>`)[0];
+    popup_eb23bc10ae90cae9591d742c9ef5ef30.setContent(html_21938d53ddcb41da0c5decc19f9eac57);
+
+
+
+    circle_marker_66f496eb0b161832ef932278e61e0318.bindPopup(popup_eb23bc10ae90cae9591d742c9ef5ef30)
+        ;
+
+
+
+
+    circle_marker_66f496eb0b161832ef932278e61e0318.bindTooltip(
+        `<div>
+                     Great Escape (0.002)
+                 </div>`,
+        {
+            "sticky": true,
+        }
+    );
+
+
+    var circle_marker_70f0bfdb86931b3737a491ca9cb60cf3 = L.circleMarker(
+        [42.9284, -78.3847],
+        { "bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.222514703214161, "stroke": true, "weight": 3 }
+    ).addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var popup_990eef1145a78f956218b3ea950f8090 = L.popup({
+        "maxWidth": 300,
+    });
+
+
+
+    var html_1d292791f8a63bc32ac0c00d32d3aa24 = $(`<div id="html_1d292791f8a63bc32ac0c00d32d3aa24" style="width: 100.0%; height: 100.0%;">     <b>Six Flags Darien Lake</b><br>     Corfu, NY<br>     Coasters: 7<br>     Distance: 42.0 mi<br>     Huff Prob: 0.0411     </div>`)[0];
+    popup_990eef1145a78f956218b3ea950f8090.setContent(html_1d292791f8a63bc32ac0c00d32d3aa24);
+
+
+
+    circle_marker_70f0bfdb86931b3737a491ca9cb60cf3.bindPopup(popup_990eef1145a78f956218b3ea950f8090)
+        ;
+
+
+
+
+    circle_marker_70f0bfdb86931b3737a491ca9cb60cf3.bindTooltip(
+        `<div>
+                     Six Flags Darien Lake (0.041)
+                 </div>`,
+        {
+            "sticky": true,
+        }
+    );
+
+
+    var circle_marker_43d919539bb2f7a2cfebb6bfc2979c7b = L.circleMarker(
+        [40.5781, -75.5342],
+        { "bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.385890678096136, "stroke": true, "weight": 3 }
+    ).addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var popup_18642cb24bfa6abbca4945609b57dcd3 = L.popup({
+        "maxWidth": 300,
+    });
+
+
+
+    var html_f65fa7d858abc07652a2f27870905fff = $(`<div id="html_f65fa7d858abc07652a2f27870905fff" style="width: 100.0%; height: 100.0%;">     <b>Dorney Park</b><br>     Allentown, PA<br>     Coasters: 8<br>     Distance: 207.3 mi<br>     Huff Prob: 0.0019     </div>`)[0];
+    popup_18642cb24bfa6abbca4945609b57dcd3.setContent(html_f65fa7d858abc07652a2f27870905fff);
+
+
+
+    circle_marker_43d919539bb2f7a2cfebb6bfc2979c7b.bindPopup(popup_18642cb24bfa6abbca4945609b57dcd3)
+        ;
+
+
+
+
+    circle_marker_43d919539bb2f7a2cfebb6bfc2979c7b.bindTooltip(
+        `<div>
+                     Dorney Park (0.002)
+                 </div>`,
+        {
+            "sticky": true,
+        }
+    );
+
+
+    var circle_marker_37ebdb520c3cebfbcbe5e68918a81505 = L.circleMarker(
+        [40.2888, -76.6548],
+        { "bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.699277543522405, "stroke": true, "weight": 3 }
+    ).addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var popup_0ee27aaf13c5af7f1e248c7362ffd7d1 = L.popup({
+        "maxWidth": 300,
+    });
+
+
+
+    var html_23c1c47fdb6c70ebfee7267fe5f30bd0 = $(`<div id="html_23c1c47fdb6c70ebfee7267fe5f30bd0" style="width: 100.0%; height: 100.0%;">     <b>Hershey Park</b><br>     Hershey, PA<br>     Coasters: 14<br>     Distance: 203.7 mi<br>     Huff Prob: 0.0035     </div>`)[0];
+    popup_0ee27aaf13c5af7f1e248c7362ffd7d1.setContent(html_23c1c47fdb6c70ebfee7267fe5f30bd0);
+
+
+
+    circle_marker_37ebdb520c3cebfbcbe5e68918a81505.bindPopup(popup_0ee27aaf13c5af7f1e248c7362ffd7d1)
+        ;
+
+
+
+
+    circle_marker_37ebdb520c3cebfbcbe5e68918a81505.bindTooltip(
+        `<div>
+                     Hershey Park (0.003)
+                 </div>`,
+        {
+            "sticky": true,
+        }
+    );
+
+
+    var circle_marker_6053aa84ac889bc880cae192edb4f78f = L.circleMarker(
+        [40.1384, -74.4402],
+        { "bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.414278075145364, "stroke": true, "weight": 3 }
+    ).addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var popup_5f4b0d2ba1dbd91bff43a14adf61c591 = L.popup({
+        "maxWidth": 300,
+    });
+
+
+
+    var html_cf767f01676ebd222e5cdbd5cb1d10a4 = $(`<div id="html_cf767f01676ebd222e5cdbd5cb1d10a4" style="width: 100.0%; height: 100.0%;">     <b>Six Flags Great Adventure</b><br>     Jackson, NJ<br>     Coasters: 14<br>     Distance: 264.7 mi<br>     Huff Prob: 0.0021     </div>`)[0];
+    popup_5f4b0d2ba1dbd91bff43a14adf61c591.setContent(html_cf767f01676ebd222e5cdbd5cb1d10a4);
+
+
+
+    circle_marker_6053aa84ac889bc880cae192edb4f78f.bindPopup(popup_5f4b0d2ba1dbd91bff43a14adf61c591)
+        ;
+
+
+
+
+    circle_marker_6053aa84ac889bc880cae192edb4f78f.bindTooltip(
+        `<div>
+                     Six Flags Great Adventure (0.002)
+                 </div>`,
+        {
+            "sticky": true,
+        }
+    );
+
+
+    var circle_marker_07dad34198afa78bf3d87dc792f1b177 = L.circleMarker(
+        [40.8784, -76.505],
+        { "bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.446638868228063, "stroke": true, "weight": 3 }
+    ).addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var popup_6c43f8e62772c9dc91d990a7d2854f48 = L.popup({
+        "maxWidth": 300,
+    });
+
+
+
+    var html_cbe8423076b6ba0355a2ac4821290544 = $(`<div id="html_cbe8423076b6ba0355a2ac4821290544" style="width: 100.0%; height: 100.0%;">     <b>Knoebels Amusement Resort</b><br>     Elysburg, PA<br>     Coasters: 6<br>     Distance: 166.9 mi<br>     Huff Prob: 0.0022     </div>`)[0];
+    popup_6c43f8e62772c9dc91d990a7d2854f48.setContent(html_cbe8423076b6ba0355a2ac4821290544);
+
+
+
+    circle_marker_07dad34198afa78bf3d87dc792f1b177.bindPopup(popup_6c43f8e62772c9dc91d990a7d2854f48)
+        ;
+
+
+
+
+    circle_marker_07dad34198afa78bf3d87dc792f1b177.bindTooltip(
+        `<div>
+                     Knoebels Amusement Resort (0.002)
+                 </div>`,
+        {
+            "sticky": true,
+        }
+    );
+
+
+    var circle_marker_d93b136501d6634e9c7228770d732e58 = L.circleMarker(
+        [40.3858, -79.8631],
+        { "bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.332052012457091, "stroke": true, "weight": 3 }
+    ).addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var popup_c6da837576535301131c43f703ca60eb = L.popup({
+        "maxWidth": 300,
+    });
+
+
+
+    var html_1c22b5416100dfb3f792377359241d5c = $(`<div id="html_1c22b5416100dfb3f792377359241d5c" style="width: 100.0%; height: 100.0%;">     <b>Kennywood</b><br>     West Mifflin, PA<br>     Coasters: 8<br>     Distance: 223.5 mi<br>     Huff Prob: 0.0017     </div>`)[0];
+    popup_c6da837576535301131c43f703ca60eb.setContent(html_1c22b5416100dfb3f792377359241d5c);
+
+
+
+    circle_marker_d93b136501d6634e9c7228770d732e58.bindPopup(popup_c6da837576535301131c43f703ca60eb)
+        ;
+
+
+
+
+    circle_marker_d93b136501d6634e9c7228770d732e58.bindTooltip(
+        `<div>
+                     Kennywood (0.002)
+                 </div>`,
+        {
+            "sticky": true,
+        }
+    );
+
+
+    var circle_marker_cedd3c7beff3082d85c4a2ec22acfa50 = L.circleMarker(
+        [43.2322, -77.5419],
+        { "bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3 }
+    ).addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var popup_509b2a402e3aafa749b0ab3974ad88d3 = L.popup({
+        "maxWidth": 300,
+    });
+
+
+
+    var html_077e174092759decd034e3697388873b = $(`<div id="html_077e174092759decd034e3697388873b" style="width: 100.0%; height: 100.0%;">     <b>Seabreeze Amusement Park</b><br>     Irondequoit, NY<br>     Coasters: 4<br>     Distance: 6.6 mi<br>     Huff Prob: 0.9418     </div>`)[0];
+    popup_509b2a402e3aafa749b0ab3974ad88d3.setContent(html_077e174092759decd034e3697388873b);
+
+
+
+    circle_marker_cedd3c7beff3082d85c4a2ec22acfa50.bindPopup(popup_509b2a402e3aafa749b0ab3974ad88d3)
+        ;
+
+
+
+
+    circle_marker_cedd3c7beff3082d85c4a2ec22acfa50.bindTooltip(
+        `<div>
+                     Seabreeze Amusement Park (0.942)
+                 </div>`,
+        {
+            "sticky": true,
+        }
+    );
+
+
+    var circle_marker_fdeee6c863bccff8d75f930d858f85bc = L.circleMarker(
+        [40.0353, -76.2239],
+        { "bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.120910530592434, "stroke": true, "weight": 3 }
+    ).addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var popup_46d28aacc664f4efc79c7bdfbd7ed5d1 = L.popup({
+        "maxWidth": 300,
+    });
+
+
+
+    var html_8de73edc04ad9bbbc3f909f6da87dd95 = $(`<div id="html_8de73edc04ad9bbbc3f909f6da87dd95" style="width: 100.0%; height: 100.0%;">     <b>Dutch Wonderland® Family Amusement Park</b><br>     Lancaster, PA<br>     Coasters: 3<br>     Distance: 226.8 mi<br>     Huff Prob: 0.0006     </div>`)[0];
+    popup_46d28aacc664f4efc79c7bdfbd7ed5d1.setContent(html_8de73edc04ad9bbbc3f909f6da87dd95);
+
+
+
+    circle_marker_fdeee6c863bccff8d75f930d858f85bc.bindPopup(popup_46d28aacc664f4efc79c7bdfbd7ed5d1)
+        ;
+
+
+
+
+    circle_marker_fdeee6c863bccff8d75f930d858f85bc.bindTooltip(
+        `<div>
+                     Dutch Wonderland® Family Amusement Park (0.001)
+                 </div>`,
+        {
+            "sticky": true,
+        }
+    );
+
+
+    var circle_marker_307c6846d7ea89401255161dc2bb8093 = L.circleMarker(
+        [40.1812, -74.8719],
+        { "bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.066841155415489, "stroke": true, "weight": 3 }
+    ).addTo(map_a8dea14ac0061b1e3955fd14307572b6);
+
+
+    var popup_c68ad199ad4fc91613d3dd905da99ef0 = L.popup({
+        "maxWidth": 300,
+    });
+
+
+
+    var html_50b7c1293efbb8d840f21a0533282db2 = $(`<div id="html_50b7c1293efbb8d840f21a0533282db2" style="width: 100.0%; height: 100.0%;">     <b>Sesame Place Philadelphia</b><br>     Langhorne, PA<br>     Coasters: 2<br>     Distance: 249.1 mi<br>     Huff Prob: 0.0003     </div>`)[0];
+    popup_c68ad199ad4fc91613d3dd905da99ef0.setContent(html_50b7c1293efbb8d840f21a0533282db2);
+
+
+
+    circle_marker_307c6846d7ea89401255161dc2bb8093.bindPopup(popup_c68ad199ad4fc91613d3dd905da99ef0)
+        ;
+
+
+
+
+    circle_marker_307c6846d7ea89401255161dc2bb8093.bindTooltip(
+        `<div>
+                     Sesame Place Philadelphia (0.000)
+                 </div>`,
+        {
+            "sticky": true,
+        }
+    );
+
+</script>
+
+<h1>Zoom out and click on the markers to see their Huff Probablity</h1>
+<h1>Huff probablity means how likely is someone willing to travel to that park based off distance, # of rides, and price</h1>
+
+</html>

@@ -49,14 +49,15 @@
 		(async () => {
 			const { data: { session } } = await supabase.auth.getSession();
 			if (session) {
-				window.location.href = '/index.html';
+				//window.location.href = new URL('../index.html', window.location.href).href;
+				
 			}
 		})();
 
 		// --- Listen for auth state changes and redirect ---
 		supabase.auth.onAuthStateChange((event, session) => {
 			if (event === 'SIGNED_IN') {
-				window.location.href = '/index.html';
+				//window.location.href = new URL('../index.html', window.location.href).href;
 			}
 		});
 
@@ -83,7 +84,12 @@
 				msg.textContent = `Error: ${error.message}`;
 				setLoadingState(false);
 			} else {
+					console.log("User Signed in")
+					setLoadingState(true, 'Signed in!');
+					window.location.href = new URL('../index.html', window.location.href).href;
+
 				// onAuthStateChange will handle the redirect
+
 			}
 		}
 
@@ -110,7 +116,7 @@
 				email,
 				password,
 				options: {
-					emailRedirectTo: window.location.origin + '/index.html'
+					emailRedirectTo: new URL('../index.html', window.location.href).href
 				}
 			});
 

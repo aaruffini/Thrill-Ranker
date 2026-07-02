@@ -30,11 +30,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('ride-park').textContent = ride.park_name || 'N/A';
         document.getElementById('ride-manufacturer').textContent = ride.manufacturer_name || 'N/A';
         document.getElementById('ride-model').textContent = ride.model_name || 'v2';
-        document.getElementById('ride-height').textContent = ride.height || 'NA';
-        document.getElementById('ride-speed').textContent = ride.speed || 'NA';
-        document.getElementById('ride-time').textContent = ride.ride_time || 'NA';
-        document.getElementById('ride-inversions').textContent = ride.inversions || '0';
+         document.getElementById('ride-inversions').textContent = ride.inversions || '0';
         document.getElementById('ride-lift-system').textContent = ride.lift_system_name || 'NA';
+
+        // nullable values - height, speed, time
+        document.getElementById('ride-height').textContent = ride.height || 'NA';
+        if(ride.height == -1)
+            {
+                document.getElementById('ride-height').textContent = 'N/A'
+
+            }
+        document.getElementById('ride-speed').textContent = ride.speed || 'NA';
+        if(ride.speed == -1)
+            {
+                document.getElementById('ride-speed').textContent = 'N/A'
+
+            }
+        document.getElementById('ride-time').textContent = ride.ride_time || 'NA';
+        if(ride.ride_time == -1){
+            document.getElementById('ride-time').textContent = 'N/A'
+        }
+        
+       
         // voting info
         document.getElementById('green_count').textContent = ride.green_count ?? '0';
         document.getElementById('blue_count').textContent = ride.blue_count ?? '0';
